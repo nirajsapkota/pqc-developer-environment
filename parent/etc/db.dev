@@ -1,0 +1,18 @@
+$ORIGIN .
+$TTL    604800
+
+.                   IN      SOA     ns1.dev. hostmaster.dev. (
+                                    3       ; Serial
+                                    604800  ; Refresh
+                                    86400   ; Retry
+                                    2419200 ; Expire
+                                    604800  ; Negative Cache TTL
+                                    )
+
+; NS records
+.                   IN      NS      ns1.dev.
+unsw.dev.	        IN	    NS	    ns1.unsw.dev.
+
+; A records
+ns1.dev.	        IN      A       192.168.0.4
+ns1.unsw.dev.	    IN	    A	    192.168.0.5

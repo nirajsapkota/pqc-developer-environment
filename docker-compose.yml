@@ -1,0 +1,57 @@
+version: "3.9"
+
+networks:
+
+  localnet:
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1
+
+services:
+
+  client:
+    image: wbitt/network-multitool
+    dns: 192.168.0.3
+    restart: always
+    networks:
+      localnet:
+        ipv4_address: 192.168.0.2
+
+  resolver:
+    image: ghcr.io/nirajsapkota/pqc-dns:main
+    environment:
+      - TZ=Australia/Sydney
+    volumes:
+      - "./resolver/etc:/etc"
+    privileged: true
+    restart: always
+    networks:
+      localnet:
+        ipv4_address: 192.168.0.3
+
+  parent:
+    image: ghcr.io/nirajsapkota/pqc-dns:main
+    environment:
+      - TZ=Australia/Sydney
+    volumes:
+      - "./parent/etc:/etc"
+    privileged: true
+    restart: always
+    networks:
+      localnet:
+        ipv4_address: 192.168.0.4
+
+  child:
+    image: ghcr.io/nirajsapkota/pqc-dns:main
+    environment:
+      - TZ=Australia/Sydney
+    volumes:
+      - "./child/etc:/etc"
+    privileged: true
+    restart: always
+    networks:
+      localnet:
+        ipv4_address: 192.168.0.5
