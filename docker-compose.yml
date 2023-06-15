@@ -27,7 +27,7 @@ services:
       - SIDECAR_IP_ADDRESS=192.168.0.3
       - SIDECAR_RESOLVER_ENABLED=true
     volumes:
-      - "./resolver/etc:/etc"
+      - "./resolver/etc:/usr/local/etc"
     privileged: true
     restart: always
     networks:
@@ -40,7 +40,7 @@ services:
       - TZ=Australia/Sydney
       - SIDECAR_IP_ADDRESS=192.168.0.4
     volumes:
-      - "./parent/etc:/etc"
+      - "./parent/etc:/usr/local/etc"
     privileged: true
     restart: always
     networks:
@@ -53,7 +53,7 @@ services:
       - TZ=Australia/Sydney
       - SIDECAR_IP_ADDRESS=192.168.0.5
     volumes:
-      - "./child/etc:/etc"
+      - "./child/etc:/usr/local/etc"
     privileged: true
     restart: always
     networks:
