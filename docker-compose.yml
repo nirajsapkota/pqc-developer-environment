@@ -28,6 +28,7 @@ services:
       - SIDECAR_RESOLVER_ENABLED=true
     volumes:
       - "./resolver/etc:/usr/local/etc"
+    tty: true
     privileged: true
     restart: always
     networks:
@@ -41,6 +42,7 @@ services:
       - SIDECAR_IP_ADDRESS=192.168.0.4
     volumes:
       - "./parent/etc:/usr/local/etc"
+    tty: true
     privileged: true
     restart: always
     networks:
@@ -54,6 +56,7 @@ services:
       - SIDECAR_IP_ADDRESS=192.168.0.5
     volumes:
       - "./child/etc:/usr/local/etc"
+    tty: true
     privileged: true
     restart: always
     networks:
